@@ -133,13 +133,13 @@ select:focus {
     border-color: #D4AF37;
 }
 
-/* 비활성화 상태 디자인 */
+/* 비활성화 상태 디자인 (모바일 강제 적용) */
 select:disabled, input:disabled {
-    background: rgba(255, 255, 255, 0.05);
-    color: #555;
-    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(100, 100, 100, 0.2) !important;
+    color: #666 !important;
+    border-color: rgba(255, 255, 255, 0.05) !important;
     cursor: not-allowed;
-    opacity: 0.6;
+    opacity: 0.4 !important;
 }
 
 option {
@@ -457,6 +457,29 @@ option {
 
     .bazi-column {
         padding: 0.5rem 0;
+    }
+    
+    .bazi-label {
+        font-size: 0.7rem;
+        white-space: nowrap;
+    }
+
+    .elements-legend {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 0;
+    }
+
+    .elements-legend > span {
+        display: block;
+        text-align: center;
+        font-size: 0.7rem;
+        white-space: nowrap;
+    }
+
+    .elements-legend > span::before {
+        display: block;
+        margin: 0 auto 4px auto;
     }
     
     /* 날짜, 시간 선택 드롭다운 겹침 해결 */
