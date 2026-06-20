@@ -4,416 +4,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아파트 1세대는 얼마에 지어질까? - 실전 투자 분석</title>
-
-    <!-- Reveal.js CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/night.min.css" id="theme">
-
-    <!-- Google Fonts: Pretendard -->
-    <link rel="stylesheet" as="style" crossorigin
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
-
-    <style>
-        :root {
-            --r-main-font: 'Pretendard', sans-serif;
-            --r-heading-font: 'Pretendard', sans-serif;
-            --hyundai-blue: #002c5f;
-            --hyundai-gold: #c2a672;
-            --accent-color: #4CAF50;
-            --alert-color: #ff5252;
-        }
-
-        .reveal {
-            font-family: var(--r-main-font);
-            font-size: 32px;
-            word-break: keep-all;
-        }
-
-        .reveal h1,
-        .reveal h2,
-        .reveal h3,
-        .reveal h4 {
-            font-family: var(--r-heading-font);
-            text-transform: none;
-            font-weight: 700;
-            word-break: keep-all;
-        }
-
-        .reveal h1 {
-            font-size: 2.2em;
-            line-height: 1.3;
-        }
-
-        .reveal h2 {
-            font-size: 1.5em;
-            color: #ffffff;
-            margin-bottom: 30px;
-        }
-
-        .reveal h3 {
-            font-size: 1.2em;
-        }
-
-        .reveal p {
-            font-size: 0.85em;
-            line-height: 1.6;
-        }
-
-        .highlight {
-            color: var(--hyundai-gold);
-            font-weight: bold;
-        }
-
-        .highlight-blue {
-            color: #64b5f6;
-            font-weight: bold;
-        }
-
-        .highlight-green {
-            color: #81c784;
-            font-weight: bold;
-        }
-
-        .highlight-red {
-            color: var(--alert-color);
-            font-weight: bold;
-        }
-
-        .box-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 25px;
-            border-radius: 12px;
-            flex: 1;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .box:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--hyundai-gold);
-        }
-
-        .box h4 {
-            color: var(--hyundai-gold);
-            margin-top: 0;
-            font-size: 1.1em;
-            margin-bottom: 15px;
-        }
-
-        .box ul {
-            font-size: 0.75em;
-            color: #cccccc;
-            line-height: 1.5;
-            padding-left: 20px;
-        }
-
-        .box ul li {
-            margin-bottom: 10px;
-        }
-
-        .formula-box {
-            background: linear-gradient(135deg, rgba(0, 44, 95, 0.8), rgba(0, 0, 0, 0.8));
-            border-left: 5px solid var(--hyundai-gold);
-            padding: 30px;
-            border-radius: 10px;
-            font-size: 1.1em;
-            font-weight: bold;
-            margin: 30px 0;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            text-align: center;
-        }
-
-        .footer-logo {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
-            font-size: 0.5em;
-            color: rgba(255, 255, 255, 0.5);
-            font-weight: bold;
-            z-index: 1000;
-        }
-
-        table {
-            width: 100%;
-            font-size: 0.7em;
-            border-collapse: collapse;
-            margin-top: 15px;
-            color: #eeeeee;
-        }
-
-        th,
-        td {
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--hyundai-gold);
-            text-align: center;
-        }
-    </style>
+    <title>사주풀이</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/lunar-javascript/lunar.js"></script>
 </head>
 
 <body>
+    <div class="container">
+        <header>
+            <h1>天運 <span class="subtitle">AI 정밀 사주 분석</span></h1>
+            <p>당신의 태어난 우주의 기운을 인공지능이 상세히 풀어드립니다.</p>
+        </header>
 
-    <div class="reveal">
-        <div class="footer-logo">HYUNDAI ESTIMATING TEAM | EWHA WOMANS UNIV.</div>
-
-        <div class="slides">
-
-            <!-- 타이틀 슬라이드 -->
-            <section data-auto-animate>
-                <h3 style="color: var(--hyundai-gold); font-weight: 300; font-size: 1em; margin-bottom: 10px;">이화여대
-                    건축공학과 & 실무자 특강</h3>
-                <h1 style="margin: 20px 0;">아파트 1세대는<br>얼마에 지어질까?</h1>
-                <p style="font-size: 1em; color: #aaaaaa; margin-top: 30px;">공사비의 영향요인으로 분석하는 정비사업 투자가치와 안전마진</p>
-                <div style="margin-top: 50px; opacity: 0.8;">
-                    <p style="font-size: 0.8em;">현대건설 건축주택견적실 주택견적팀</p>
-                </div>
-            </section>
-
-            <!-- 목차 -->
-            <section>
-                <h2>오늘의 여정 (목차)</h2>
-                <div style="display: flex; gap: 20px; margin-top: 40px;">
-                    <div class="box fragment fade-up" data-fragment-index="1">
-                        <h4>Part 1</h4>
-                        <p style="font-size: 1em; color: white; font-weight:bold; margin-bottom: 10px;">내 집의 진짜 원가</p>
-                        <p style="font-size: 0.75em; color:#ccc;">평당 공사비의 착시 현상<br>단위세대 vs 전체 공사비</p>
-                    </div>
-                    <div class="box fragment fade-up" data-fragment-index="2">
-                        <h4>Part 2</h4>
-                        <p style="font-size: 1em; color: white; font-weight:bold; margin-bottom: 10px;">공사비 리스크 판별</p>
-                        <p style="font-size: 0.75em; color:#ccc;">임장 시 필수 체크리스트<br>지하주차장과 암반의 비밀</p>
-                    </div>
-                    <div class="box fragment fade-up" data-fragment-index="3">
-                        <h4>Part 3</h4>
-                        <p style="font-size: 1em; color: white; font-weight:bold; margin-bottom: 10px;">투자의 뼈대 세우기</p>
-                        <p style="font-size: 0.75em; color:#ccc;">감정평가액 약식 추정법<br>비례율 100%의 함정</p>
-                    </div>
-                    <div class="box fragment fade-up" data-fragment-index="4">
-                        <h4>Part 4</h4>
-                        <p style="font-size: 1em; color: white; font-weight:bold; margin-bottom: 10px;">실전 투자 분석</p>
-                        <p style="font-size: 0.75em; color:#ccc;">총 투자금과 안전마진 계산<br>분담금 리스크 헷지 전략</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Part 1 -->
-            <section>
-                <section data-auto-animate>
-                    <h2 class="highlight">Part 1. 내 집의 진짜 원가</h2>
-                    <p>우리가 분양받는 아파트, 건축비의 비중은 얼마나 될까?</p>
-                </section>
-                <section data-auto-animate>
-                    <h2>'평당 공사비' 착시 현상 주의</h2>
-                    <div class="box-container">
-                        <div class="box fragment">
-                            <h4 style="color: #64b5f6;">시공사 기준 (연면적당 단가)</h4>
-                            <p style="font-size: 0.85em; color: #ccc;">총 공사비 ÷ <strong>연면적(지하+지상 전체)</strong></p>
-                            <ul>
-                                <li>시공사가 도급계약을 맺을 때 사용하는 기준.</li>
-                                <li>지하주차장까지 모두 포함된 면적으로 나누기 때문에 단가가 상대적으로 낮아 보임 (최근 약 700~800만 원/평 수준).</li>
-                            </ul>
-                        </div>
-                        <div class="box fragment">
-                            <h4 style="color: #81c784;">조합/일반 기준 (공급면적당 단가)</h4>
-                            <p style="font-size: 0.85em; color: #ccc;">총 공사비 ÷ <strong>공급면적(분양면적)</strong></p>
-                            <ul>
-                                <li>일반인들이 체감하는 '건축 원가'의 기준.</li>
-                                <li>실제 세대당 분양가에 반영되는 원가로, 연면적 기준보다 단가가 1.3~1.5배 높음 (최근 약 1,000~1,200만 원/평).</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="fragment formula-box" style="padding: 15px; margin-top: 20px;">
-                        <span style="font-size: 0.85em; color: white;">
-                            💡 투자 포인트: 평당 분양가가 3,000만 원인데 건축비가 1,000만 원이라면?<br>
-                            <span class="highlight">나머지 2,000만 원은 내 대지지분의 가치(땅값)와 개발 마진입니다.</span>
-                        </span>
-                    </div>
-                </section>
-            </section>
-
-            <!-- Part 2 -->
-            <section>
-                <section data-auto-animate>
-                    <h2 class="highlight-blue">Part 2. 공사비 폭등의 숨은 주범</h2>
-                    <p>임장(현장답사) 시 반드시 체크해야 할 <strong>물리적 원가 상승 리스크</strong></p>
-                </section>
-                <section data-auto-animate>
-                    <h2>사업성을 깎아먹는 공사비 리스크</h2>
-                    <div class="box-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                        <div class="box fragment">
-                            <h4>🚧 1. 경사지와 암반 (토목/토공사)</h4>
-                            <ul>
-                                <li><strong>단차가 심한 구릉지:</strong> 대규모 옹벽 공사와 흙막이 가시설 비용 발생. 옹벽이 많을수록 대지 활용도 하락.</li>
-                                <li><strong class="highlight-red">지반이 단단한 암반 지대:</strong> 터파기 시 일반 토사 대비 굴착/발파 비용이
-                                    기하급수적으로 증가. 공기 지연의 주범.</li>
-                            </ul>
-                        </div>
-                        <div class="box fragment">
-                            <h4>🚗 2. 과도한 지하주차장 심도</h4>
-                            <ul>
-                                <li><strong>세대당 주차 대수:</strong> 1.2대 vs 2.0대 설계에 따라 지하층 깊이 변화.</li>
-                                <li>지하 3층 이상으로 깊어질수록 <strong class="highlight-red">흙막이 공법 단가 급증, 지하수위(Dewatering)
-                                        리스크</strong>가 발생하여 뼈아픈 공사비 증가 초래.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="box fragment"
-                        style="margin-top: 15px; background: rgba(194, 166, 114, 0.1); border-color: var(--hyundai-gold);">
-                        <h4 style="text-align: center;">💎 3. 하이엔드 특화의 양날의 검</h4>
-                        <p style="font-size: 0.75em; color: #ccc; text-align: center;">
-                            스카이브릿지, 커튼월룩 외관, 외산 주방가구 적용은 단지 가치를 올리지만,<br>
-                            <strong>동시에 공사비를 수천억 원 상승시켜 조합원 분담금 폭탄</strong>으로 돌아올 수 있습니다. (수익성과 고급화의 타협점 필요)
-                        </p>
-                    </div>
-                </section>
-            </section>
-
-            <!-- Part 3 -->
-            <section>
-                <section data-auto-animate>
-                    <h2 class="highlight-green">Part 3. 재개발/재건축 투자의 뼈대</h2>
-                    <p>조합원 딱지, 진짜 싼 게 맞을까? <strong>비례율과 감정평가의 비밀</strong></p>
-                </section>
-                <section data-auto-animate>
-                    <h2>감정평가액 약식 추정 꿀팁</h2>
-                    <p style="font-size: 0.8em; color: #ccc; margin-bottom: 20px;">사업시행인가 전, 아직 내 물건의 감평가가 안 나왔을 때 러프하게
-                        계산하는 법</p>
-                    <table>
-                        <tr>
-                            <th style="width: 30%;">물건 유형</th>
-                            <th>감정평가액 추정 공식 (실무적 가이드)</th>
-                        </tr>
-                        <tr>
-                            <td style="color: #64b5f6; font-weight: bold; text-align: center;">빌라/다세대 (재개발)</td>
-                            <td>공동주택공시가격 × <strong>1.3배 ~ 1.5배</strong></td>
-                        </tr>
-                        <tr>
-                            <td style="color: #81c784; font-weight: bold; text-align: center;">단독/다가구 (재개발)</td>
-                            <td>(토지 개별공시지가 × 면적 × 1.5~1.8배) + (건물 연면적 × 평당 100~200만 원)</td>
-                        </tr>
-                        <tr>
-                            <td style="color: #ff9800; font-weight: bold; text-align: center;">기존 아파트 (재건축)</td>
-                            <td>공동주택공시가격 × <strong>1.2배 ~ 1.3배</strong> (혹은 KB시세의 70~80%)</td>
-                        </tr>
-                    </table>
-                </section>
-                <section data-auto-animate>
-                    <h2>비례율의 함정과 권리가액</h2>
-                    <div class="box-container">
-                        <div class="box fragment">
-                            <h4 style="color: #ff9800;">비례율 공식</h4>
-                            <div
-                                style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px; text-align: center; color: white;">
-                                (총 수입 - <span class="highlight-red">총 사업비</span>) ÷ 종전평가액 총합 × 100
-                            </div>
-                            <ul style="margin-top: 15px;">
-                                <li>비례율 100% 이상이면 좋은 사업장? <strong class="highlight-red">착각입니다!</strong></li>
-                                <li>조합이 의도적으로 종전평가액(분모)을 낮춰 비례율을 높아 보이게 만들 수 있습니다.</li>
-                            </ul>
-                        </div>
-                        <div class="box fragment">
-                            <h4 style="color: var(--hyundai-gold);">권리가액 (내 진짜 가치)</h4>
-                            <div
-                                style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px; text-align: center; color: white;">
-                                감정평가액 × 비례율
-                            </div>
-                            <ul style="margin-top: 15px;">
-                                <li>비례율이 올라도 감평가가 낮으면 내 권리가액(인정받는 자산가치)은 제자리입니다.</li>
-                                <li>투자 시 비례율 숫자에 맹신하지 말고 <strong>'안전마진'</strong>을 직접 구해야 합니다.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-            </section>
-
-            <!-- Part 4 -->
-            <section>
-                <section data-auto-animate>
-                    <h2 style="color: #ff9800;">Part 4. 실전 투자 - 안전마진 구하기</h2>
-                    <p>프리미엄(P)을 주고 샀을 때, <strong>나는 얼마를 벌 수 있는가?</strong></p>
-                </section>
-                <section data-auto-animate>
-                    <h2>총 투자금과 안전마진 계산법</h2>
-                    <div class="formula-box fragment"
-                        style="text-align: left; padding: 20px 40px; font-size: 0.9em; line-height: 1.8;">
-                        <span style="color: #64b5f6;">① 내가 처음에 내는 돈:</span> 매매가 = (예상 감정평가액) + <strong
-                            class="highlight">프리미엄(P)</strong><br>
-                        <span style="color: #81c784;">② 나중에 추가로 내는 돈:</span> 추가 분담금 = (조합원 분양가) - (예상 권리가액)<br>
-                        <hr style="border: 0; border-top: 1px dashed rgba(255,255,255,0.3); margin: 10px 0;">
-                        <span style="color: white; font-size: 1.2em;">💰 총 투자금 = ① 매매가 + ② 추가 분담금</span>
-                    </div>
-                    <div class="box fragment" style="margin-top: 20px; text-align: center;">
-                        <h3 style="color: var(--hyundai-gold); margin-bottom: 10px;">🛡️ 안전마진 (Safety Margin)</h3>
-                        <p style="font-size: 1.1em; color: white;">
-                            (주변 신축 아파트 시세) - (총 투자금) = <strong class="highlight-red">나의 기대 수익</strong>
-                        </p>
-                        <p style="font-size: 0.8em; color: #ccc; margin-top: 10px;">안전마진이 최소 1~2억 이상 확보되어야 공사비 인상 등 리스크를
-                            방어할 수 있습니다.</p>
-                    </div>
-                </section>
-                <section data-auto-animate>
-                    <h2>분담금 리스크 헷지(Hedge) 전략</h2>
-                    <div class="box-container" style="flex-direction: column; gap: 15px;">
-                        <div class="box fragment">
-                            <h4>✅ 일반분양 비율이 높은 단지를 찾아라</h4>
-                            <p style="font-size: 0.8em; color: #ccc;">
-                                공사비가 인상되더라도, <strong>일반분양 물량이 많으면 일반분양가를 조금만 올려도 총 수입이 크게 늘어나</strong> 조합원의 추가 분담금을 막아줄
-                                수 있습니다. (조합원수 대비 일반분양 100% 이상 권장)
-                            </p>
-                        </div>
-                        <div class="box fragment">
-                            <h4>✅ 도급계약서의 '물가상승(Escalation)' 조항 확인</h4>
-                            <p style="font-size: 0.8em; color: #ccc;">
-                                착공 시점까지 공사비가 소비자물가지수(CPI) 혹은 건설공사비지수 중 어떤 것에 연동되는지, 지질 여건 변경 시(암반 등) 공사비 증액 조항이 시공사/조합 중
-                                누구에게 유리한지 체크해야 합니다.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-            </section>
-
-            <!-- 마무리 -->
-            <section>
-                <h1 class="highlight">Q & A</h1>
-                <p style="font-size: 1.2em; margin-top: 40px;"> </p>
-                <p style="margin-top: 50px; color: #888; font-size: 0.8em;">현대건설 건축주택견적실 주택견적팀</p>
-            </section>
-
+        <!-- AI 설정 영역 (하드코딩으로 숨김 처리) -->
+        <div class="glass-card ai-config hidden" id="ai-config-section">
+            <input type="hidden" id="api-key" value="AQ.Ab8RN6JXGh8SHZZjl935-ElpBoYkjnCrLqDJvHeKvhzE1Jwdnw">
+            <input type="hidden" id="ai-provider" value="gemini">
         </div>
-    </div>
 
-    <!-- Reveal.js Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
-    <script>
-        Reveal.initialize({
-            hash: true,
-            transition: 'slide',
-            autoAnimate: true,
-            controls: true,
-            progress: true,
-            center: true,
-            width: 1024,
-            height: 768,
-            margin: 0.1,
-            disableLayout: false
-        });
-    </script>
+        <!-- 입력 폼 영역 -->
+        <main class="glass-card" id="input-section">
+            <form id="saju-form">
+                <div class="form-group">
+                    <label>이름</label>
+                    <input type="text" id="name" placeholder="이름을 입력하세요" autocomplete="off">
+                </div>
+
+                <div class="form-group row">
+                    <div class="col">
+                        <label>성별</label>
+                        <select id="gender">
+                            <option value="M">남성 (乾命)</option>
+                            <option value="F">여성 (坤命)</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label>달력 기준</label>
+                        <select id="calendar">
+                            <option value="solar">양력</option>
+                            <option value="lunar">음력</option>
+                            <option value="lunar_leap">음력 (윤달)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>생년월일</label>
+                    <div class="date-selects" style="display:flex; gap:0.5rem;">
+                        <select id="birth-year" required></select> <span
+                            style="align-self:center; color:#b0b0b0;">년</span>
+                        <select id="birth-month" required></select> <span
+                            style="align-self:center; color:#b0b0b0;">월</span>
+                        <select id="birth-day" required></select> <span
+                            style="align-self:center; color:#b0b0b0;">일</span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col">
+                        <label>태어난 시간 (선택)</label>
+                        <div class="time-selects" style="display:flex; gap:0.5rem;">
+                            <select id="birth-hour">
+                                <option value="">모름</option>
+                            </select> <span style="align-self:center; color:#b0b0b0;">시</span>
+                            <select id="birth-minute">
+                                <option value="0">00</option>
+                            </select> <span style="align-self:center; color:#b0b0b0;">분</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label>태어난 지역 (선택)</label>
+                        <select id="birth-location">
+                            <option value="0">지역 모름 (표준시 적용)</option>
+                            <option value="32">서울 / 경기 / 인천</option>
+                            <option value="23">강원</option>
+                            <option value="30">충청 / 대전</option>
+                            <option value="32">전라 / 광주</option>
+                            <option value="24">경상 / 부산 / 대구</option>
+                            <option value="33">제주</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">사주 분석하기</button>
+
+                <div class="quote-text"
+                    style="text-align:center; margin-top:2rem; font-size:0.9rem; color:#888; font-style:italic; line-height:1.5;">
+                    "명(命)은 하늘이 내리지만, 운(運)은 내가 만들어 가는 것입니다.<br>사주는 정답이 아닌, 내 삶의 일기예보이자 지혜로운 나침반으로 삼으시길 바랍니다."
+                </div>
+            </form>
+        </main>
+
+        <!-- 결과 표시 영역 (처음엔 숨김) -->
+        <section class="glass-card hidden" id="result-section">
+            <div class="result-header">
+                <h2 id="result-title">홍길동님의 사주팔자</h2>
+                <button id="reset-btn" class="text-btn">다시 입력하기</button>
+            </div>
+
+            <!-- 팔자(8글자) 테이블 -->
+            <div class="bazi-grid">
+                <div class="bazi-column">
+                    <div class="bazi-label">시주 (時)</div>
+                    <div class="bazi-char stem" id="hour-stem">?</div>
+                    <div class="bazi-char branch" id="hour-branch">?</div>
+                </div>
+                <div class="bazi-column">
+                    <div class="bazi-label">일주 (日)</div>
+                    <div class="bazi-char stem" id="day-stem">?</div>
+                    <div class="bazi-char branch" id="day-branch">?</div>
+                </div>
+                <div class="bazi-column">
+                    <div class="bazi-label">월주 (月)</div>
+                    <div class="bazi-char stem" id="month-stem">?</div>
+                    <div class="bazi-char branch" id="month-branch">?</div>
+                </div>
+                <div class="bazi-column">
+                    <div class="bazi-label">년주 (年)</div>
+                    <div class="bazi-char stem" id="year-stem">?</div>
+                    <div class="bazi-char branch" id="year-branch">?</div>
+                </div>
+            </div>
+
+            <!-- 오행 분석 -->
+            <div class="elements-analysis">
+                <h3>오행(五行) 분포</h3>
+                <div class="elements-bar">
+                    <div class="el-segment wood" id="el-wood"></div>
+                    <div class="el-segment fire" id="el-fire"></div>
+                    <div class="el-segment earth" id="el-earth"></div>
+                    <div class="el-segment metal" id="el-metal"></div>
+                    <div class="el-segment water" id="el-water"></div>
+                </div>
+                <div class="elements-legend">
+                    <span class="wood">木(목) <span id="cnt-wood">0</span></span>
+                    <span class="fire">火(화) <span id="cnt-fire">0</span></span>
+                    <span class="earth">土(토) <span id="cnt-earth">0</span></span>
+                    <span class="metal">金(금) <span id="cnt-metal">0</span></span>
+                    <span class="water">水(수) <span id="cnt-water">0</span></span>
+                </div>
+            </div>
+
+            <!-- 운세 풀이 텍스트 -->
+            <div class="interpretation">
+                <h3>초정밀 AI 사주 풀이</h3>
+
+                <!-- 로딩 애니메이션 -->
+                <div id="ai-loading" class="ai-loading hidden">
+                    <div class="spinner"></div>
+                    <p>우주의 기운을 모아 천기(天氣)를 분석하고 있습니다...<br /><span style="font-size:0.8rem; color:#888;">(약 5~10초
+                            소요)</span></p>
+                </div>
+
+                <div class="interp-content" id="interp-text">
+                    풀이 결과가 이곳에 표시됩니다.
+                </div>
+            </div>
+
+            <!-- 대화형 챗봇 영역 -->
+            <div class="chat-section hidden" id="chat-section">
+                <h3>💬 명리 AI와 대화하기</h3>
+                <div class="chat-history" id="chat-history">
+                    <!-- 메시지들이 여기에 추가됨 -->
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="사주 풀이에 대해 궁금한 점을 질문해보세요..." />
+                    <button id="chat-send-btn">전송</button>
+                </div>
+            </div>
+
+        </section>
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>
