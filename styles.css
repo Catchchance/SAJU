@@ -128,8 +128,18 @@ select {
     transition: border-color 0.3s;
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
     border-color: #D4AF37;
+}
+
+/* 비활성화 상태 디자인 */
+select:disabled, input:disabled {
+    background: rgba(255, 255, 255, 0.05);
+    color: #555;
+    border-color: rgba(255, 255, 255, 0.1);
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
 option {
