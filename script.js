@@ -183,9 +183,9 @@ async function renderSajuResult(name, yP, mP, dP, tP) {
 - 현재 연도: ${new Date().getFullYear()}년
 
 [풀이 가이드라인]
-1. 무조건 긍정적이고 좋은 말만 하지 마십시오. 오행의 불균형이나 사주상 취약점(부족한 기운, 충돌하는 기운 등)을 객관적이고 냉정하게 분석해 신뢰도를 높이세요.
-2. 풀이 내용에 '조심해야 할 점(건강, 재물 손실, 인간관계 갈등 등)'과 이를 극복하기 위한 '현실적인 조언'을 반드시 포함하세요.
-3. 전문 용어는 알기 쉽게 비유를 들어 설명해주고, 총 분량은 최소 1000자 이상으로 매우 상세하게 작성해주세요.
+1. 타고난 장점과 긍정적인 잠재력을 충분히 칭찬하고 격려해 주며, 동시에 사주상 취약점(부족한 기운 등)도 함께 짚어주어 균형 잡힌 해석을 제공하세요.
+2. 각 항목별로 '타고난 강점과 긍정적인 흐름'을 먼저 설명한 뒤, '주의해야 할 점'과 이를 지혜롭게 극복하기 위한 '따뜻하고 현실적인 조언'을 명확히 나누어 작성하세요.
+3. 전문 용어는 알기 쉽게 비유를 들어 설명해주고, 총 분량은 최소 1000자 이상으로 매우 상세하게 작성해주세요. 전체적인 어조는 희망적이고 부드러워야 합니다.
 
 위 가이드라인을 바탕으로 아래의 카테고리에 맞춰 사주를 풀이해주세요.
 1. 🌟 총평 및 본질적 성향 (타고난 우주의 기운과 냉정한 장단점)
@@ -198,7 +198,7 @@ async function renderSajuResult(name, yP, mP, dP, tP) {
 마크다운 형식(##, ###, **강조**)을 사용하여 시각적으로 아름답게 작성해주세요.`;
 
     try {
-        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=${apiKey}`, {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -268,7 +268,7 @@ async function sendChatMessage() {
     chatHistory.push({ role: "user", parts: [{ text: msg }] });
 
     try {
-        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-lite-latest:generateContent?key=${apiKey}`, {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ contents: chatHistory })
