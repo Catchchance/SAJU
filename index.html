@@ -19,7 +19,7 @@
 
         <!-- AI 설정 영역 (하드코딩으로 숨김 처리) -->
         <div class="glass-card ai-config hidden" id="ai-config-section">
-            <input type="hidden" id="api-key" value="AQ.Ab8RN6Leu4SD3eoOudcBE8Wd8aYA9ushK_b6kA1BfIqHRbmqxw">
+            <input type="hidden" id="api-key" value="AQ.Ab8RN6IQrDn83n4oMI4XvOoGVkEbI4bXY9JfanC38TERAdPZww">
             <input type="hidden" id="ai-provider" value="gemini">
         </div>
 
@@ -79,8 +79,25 @@
                     </div>
                 </div>
 
-                <div class="chat-notice" style="text-align:center; font-size: 0.85rem; color: #bbbbbb; background: rgba(212, 175, 55, 0.08); padding: 12px; border-radius: 8px; margin-bottom: 20px; border: 1px solid rgba(212, 175, 55, 0.2);">
-                    <span style="color: #d4af37; font-weight: bold; margin-right: 5px;">💡 안내:</span> 분석이 완료되면 AI 명리술사와 <strong style="color: #ffffff;">채팅 상담</strong>을 이어갈 수 있습니다.
+                <div class="form-group">
+                    <label>풀이 스타일</label>
+                    <div class="tone-selector">
+                        <button type="button" class="tone-btn" data-tone="soft">희망적</button>
+                        <button type="button" class="tone-btn active" data-tone="normal">객관적</button>
+                        <button type="button" class="tone-btn" data-tone="harsh">직설적</button>
+                    </div>
+                    <div class="tone-indicator">
+                        <span class="left-label">다정다감</span>
+                        <div class="tone-arrow"></div>
+                        <span class="right-label">팩트폭행</span>
+                    </div>
+                    <input type="hidden" id="tone" value="normal">
+                </div>
+
+                <div class="chat-notice"
+                    style="text-align:center; font-size: 0.85rem; color: #bbbbbb; background: rgba(212, 175, 55, 0.08); padding: 12px; border-radius: 8px; margin-bottom: 20px; border: 1px solid rgba(212, 175, 55, 0.2);">
+                    <span style="color: #d4af37; font-weight: bold; margin-right: 5px;">💡 안내:</span> 분석이 완료되면 AI 명리술사와
+                    <strong style="color: #ffffff;">채팅 상담</strong>을 이어갈 수 있습니다.
                 </div>
 
                 <button type="submit" class="submit-btn">사주 분석하기</button>
