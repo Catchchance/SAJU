@@ -418,3 +418,28 @@ option {
 .fade-in {
     animation: fadeIn 0.6s ease forwards;
 }
+
+/* 모바일 화면(핸드폰) 최적화 */
+@media (max-width: 500px) {
+    .form-group.row {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .bazi-char {
+        font-size: 1.8rem;
+        width: 2.5rem;
+    }
+    
+    .time-selects {
+        flex-wrap: wrap;
+    }
+    
+    .glass-card {
+        padding: 1.2rem;
+    }
+}
