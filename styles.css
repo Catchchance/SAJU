@@ -163,6 +163,69 @@ option {
     color: #666;
 }
 
+/* Tone Selector */
+.tone-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+.tone-btn {
+    flex: 1;
+    padding: 12px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: #888;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+.tone-btn:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: #ddd;
+}
+.tone-btn.active {
+    background: rgba(212, 175, 55, 0.2);
+    border-color: #d4af37;
+    color: #FFDF00;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.tone-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 5px;
+    padding: 0 5px;
+}
+.tone-arrow {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 0 15px;
+    position: relative;
+}
+.tone-arrow::before {
+    content: '◀';
+    position: absolute;
+    left: -5px;
+    top: -7px;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+}
+.tone-arrow::after {
+    content: '▶';
+    position: absolute;
+    right: -5px;
+    top: -7px;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
 /* Button */
 .submit-btn {
     width: 100%;

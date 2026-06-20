@@ -41,6 +41,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultSection = document.getElementById('result-section');
     const resetBtn = document.getElementById('reset-btn');
 
+    // 풀이 스타일 버튼 선택 로직
+    const toneBtns = document.querySelectorAll('.tone-btn');
+    const toneInput = document.getElementById('tone');
+
+    toneBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            toneBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            toneInput.value = btn.dataset.tone;
+        });
+    });
+
     form.addEventListener('submit', (e) => {
         e.preventDefault();
         
@@ -52,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const minVal = parseInt(document.getElementById('birth-minute').value || 0);
         const calendarType = document.getElementById('calendar').value;
         const locationOffset = parseInt(document.getElementById('birth-location').value || 0);
+        const tone = document.getElementById('tone').value || 'normal';
 
         let lunarObj = null;
 
@@ -89,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 timePillar = "??";
             }
 
-            renderSajuResult(name, yearPillar, monthPillar, dayPillar, timePillar);
+            renderSajuResult(name, yearPillar, monthPillar, dayPillar, timePillar, tone);
 
             inputSection.classList.add('hidden');
             resultSection.classList.remove('hidden');
@@ -117,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-async function renderSajuResult(name, yP, mP, dP, tP) {
+async function renderSajuResult(name, yP, mP, dP, tP, tone = 'normal') {
     document.getElementById('result-title').textContent = `${name}님의 사주팔자`;
 
     const chars = {
@@ -175,7 +188,16 @@ async function renderSajuResult(name, yP, mP, dP, tP) {
 
     aiLoading.classList.remove('hidden');
 
-    const prompt = `당신은 20년 경력의 날카롭고 직설적인 명리학 최고 권위자입니다.
+    let toneInstruction = '';
+    if (tone === 'harsh') {
+        toneInstruction = "3. [직설적(팩트폭행) 모드] 어설픈 위로나 예쁜 포장은 일절 배제하세요. 내담자의 치부, 단점, 실패 가능성, 성격적 결함을 숨김없이 가장 차갑고 날카로운 언어로 뼈를 때리듯 지적하세요. 듣기 거북할 정도의 적나라한 팩트폭행을 가하여 내담자가 핑계 대지 못하고 정신을 번쩍 차리게 만드세요. 장점보다는 반드시 고쳐야 할 문제점 위주로 매섭게 질타하듯 분석해야 합니다.";
+    } else if (tone === 'soft') {
+        toneInstruction = "3. [희망적 모드] 단점과 한계는 최대한 긍정적이고 부드럽게 순화해서 표현하고, 내담자가 큰 위로와 희망, 자신감을 얻을 수 있도록 칭찬과 희망찬 말들 위주로 다정하게 풀이해주세요. 너무 무서운 말은 피해주세요.";
+    } else {
+        toneInstruction = "3. [객관적 모드] 단점과 주의할 점 역시 예쁘게 포장하지 않되, 전문가다운 정제된 언어로 날카롭게 짚어주세요.\n   - 단점 서술 예시: '성격이 나빠서 대못을 박는다' (X) -> '본인은 솔직하고 효율을 중시하지만, 직설적인 화법이 타인에게는 날카롭게 다가가 의도치 않은 마찰을 빚을 수 있으니 부드러운 표현 방식을 길러야 합니다.' (O)";
+    }
+
+    const prompt = `당신은 20년 경력의 명리학 최고 권위자입니다.
 다음은 내담자의 사주 정보입니다.
 - 이름: ${name}
 - 사주팔자(천간/지지): 년주(${yP}), 월주(${mP}), 일주(${dP}), 시주(${tP})
@@ -183,16 +205,16 @@ async function renderSajuResult(name, yP, mP, dP, tP) {
 - 현재 연도: ${new Date().getFullYear()}년
 
 [풀이 가이드라인]
-1. 사주 원국(천간/지지/오행)에 나타난 팩트를 기반으로 객관적이고 전문적으로 분석하세요. 감성적이거나 추상적인 위로는 배제하되, 결코 내담자의 마음을 불필요하게 긁거나 품격 없는(격 없는) 거친 표현을 써서는 안 됩니다. 20년 경력 최고 권위자다운 무게감과 예의를 지키세요.
-2. 추상적인 사주 용어만 나열하지 말고, 현실에서 어떻게 발현되는지 구체적이고 명확한 팩트로 서술하세요.
+1. 사주 원국(천간/지지/오행)에 나타난 내용을 기반으로 전문적으로 분석하세요. 20년 경력 최고 권위자다운 무게감을 지키세요.
+2. 추상적인 사주 용어만 나열하지 말고, 현실에서 어떻게 발현되는지 구체적이고 명확하게 서술하세요.
    - 강점 서술 예시: '머리가 좋습니다' (X) -> '핵심을 꿰뚫는 분석력이 뛰어나며, 남들이 보지 못하는 흐름을 읽어내는 전략적 사고가 발달했습니다.' (O)
-3. 단점과 주의할 점 역시 예쁘게 포장하지 않되, 전문가다운 정제된 언어로 날카롭게 짚어주세요.
-   - 단점 서술 예시: '성격이 나빠서 대못을 박는다' (X) -> '본인은 솔직하고 효율을 중시하지만, 직설적인 화법이 타인에게는 날카롭게 다가가 의도치 않은 마찰을 빚을 수 있으니 부드러운 표현 방식을 길러야 합니다.' (O)
-4. 단점 지적 후에는 반드시 현실에서 바로 적용할 수 있는 구체적인 보완책(개운법)을 제시하세요.
+${toneInstruction}
+4. 단점 지적 혹은 아쉬운 점을 언급한 후에는 반드시 현실에서 바로 적용할 수 있는 구체적인 보완책(개운법)을 제시하세요.
 5. 전문 용어는 알기 쉽게 비유를 들어 설명해주고, 총 분량은 최소 1000자 이상으로 상세하게 작성해주세요.
+6. [말투/어미 통일] 모든 풀이의 어미는 반드시 '~합니다', '~입니다', '~하십시오' 등 정중하고 예의 바른 존댓말(하십시오체)로 완전히 통일하세요. 직설적이고 매서운 분석(팩트폭행)을 할 때에도 절대 '~한다', '~이다' 같은 반말이나 딱딱한 문어체 어미를 쓰지 말고 품격 있는 대면 상담의 경어체를 유지해야 합니다.
 
 위 가이드라인을 바탕으로 아래의 카테고리에 맞춰 사주를 풀이해주세요.
-# 🌟 총평 및 본질적 성향 (가장 두드러지는 성격의 장단점과 현실적 분석)
+# 🌟 총평 및 본질적 성향 (가장 두드러지는 성격의 특징과 현실적 분석)
 # 💰 재물운 (돈이 새어나가는 구체적 패턴 및 재물 축적 방법)
 # 💼 직장/사업운 (가장 잘 맞는 구체적 직업군, 사회생활에서 겪기 쉬운 문제)
 # ❤️ 애정/대인관계운 (연애 패턴, 피해야 할 사람의 구체적 특징)
@@ -252,6 +274,7 @@ async function renderSajuResult(name, yP, mP, dP, tP) {
             <div style="text-align:center; padding: 2rem 0;">
                 <h3 style="color:#F44336; margin-bottom: 1rem;">⏳ 잠시 후 다시 시도해주세요</h3>
                 <p style="color:#ccc; font-size: 0.95rem; line-height: 1.6;">${userFriendlyError}</p>
+                <p style="color:#666; font-size: 0.8rem; margin-top:1rem; word-break: break-all;">(디버그용 에러 원인: ${err.message})</p>
             </div>
         `;
     }
