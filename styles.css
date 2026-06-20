@@ -5,9 +5,13 @@
     font-family: 'Noto Serif KR', serif;
 }
 
+input, select, button, textarea {
+    font-family: 'Noto Serif KR', serif;
+}
+
 body {
     background-color: #0b0c10;
-    background-image:
+    background-image: 
         radial-gradient(circle at 15% 50%, rgba(106, 13, 173, 0.15), transparent 25%),
         radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.1), transparent 25%);
     color: #e0e0e0;
@@ -41,9 +45,10 @@ header .subtitle {
     font-weight: 300;
 }
 
-header p {
+header p, .subtitle-desc {
     color: #888;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    word-break: keep-all;
 }
 
 /* Glassmorphism Card */
@@ -67,7 +72,6 @@ header p {
 .ai-config {
     padding: 1rem 1.5rem;
 }
-
 .ai-config summary {
     cursor: pointer;
     color: #D4AF37;
@@ -75,13 +79,11 @@ header p {
     outline: none;
     font-size: 1.1rem;
 }
-
 .ai-config-body {
     margin-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255,255,255,0.1);
     padding-top: 1rem;
 }
-
 .ai-hint {
     font-size: 0.85rem;
     color: #888;
@@ -126,8 +128,7 @@ select {
     transition: border-color 0.3s;
 }
 
-input:focus,
-select:focus {
+input:focus, select:focus {
     border-color: #D4AF37;
 }
 
@@ -136,10 +137,15 @@ option {
     color: #fff;
 }
 
-.time-input {
+.date-selects, .time-selects, .time-loc-selects {
     display: flex;
+    gap: 0.5rem;
     align-items: center;
-    gap: 1rem;
+}
+
+.date-selects span, .time-selects span, .time-loc-selects span {
+    color: #b0b0b0;
+    white-space: nowrap;
 }
 
 .time-hint {
@@ -182,7 +188,7 @@ option {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
     padding-bottom: 1rem;
 }
 
@@ -207,7 +213,7 @@ option {
     background: rgba(0, 0, 0, 0.2);
     border-radius: 12px;
     padding: 1rem 0;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255,255,255,0.05);
 }
 
 .bazi-label {
@@ -222,29 +228,15 @@ option {
     margin: 0.2rem 0;
     width: 3rem;
     text-align: center;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    text-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
 
 /* Colors for 5 Elements */
-.color-wood {
-    color: #4CAF50;
-}
-
-.color-fire {
-    color: #F44336;
-}
-
-.color-earth {
-    color: #FFC107;
-}
-
-.color-metal {
-    color: #E0E0E0;
-}
-
-.color-water {
-    color: #2196F3;
-}
+.color-wood { color: #4CAF50; }
+.color-fire { color: #F44336; }
+.color-earth { color: #FFC107; }
+.color-metal { color: #E0E0E0; }
+.color-water { color: #2196F3; }
 
 /* Elements Analysis */
 .elements-analysis {
@@ -263,45 +255,28 @@ option {
     border-radius: 6px;
     overflow: hidden;
     margin-bottom: 1rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255,255,255,0.1);
 }
 
 .el-segment {
     transition: width 1s ease-in-out;
 }
-
-.el-segment.wood {
-    background-color: #4CAF50;
-}
-
-.el-segment.fire {
-    background-color: #F44336;
-}
-
-.el-segment.earth {
-    background-color: #FFC107;
-}
-
-.el-segment.metal {
-    background-color: #E0E0E0;
-}
-
-.el-segment.water {
-    background-color: #2196F3;
-}
+.el-segment.wood { background-color: #4CAF50; }
+.el-segment.fire { background-color: #F44336; }
+.el-segment.earth { background-color: #FFC107; }
+.el-segment.metal { background-color: #E0E0E0; }
+.el-segment.water { background-color: #2196F3; }
 
 .elements-legend {
     display: flex;
     justify-content: space-between;
     font-size: 0.85rem;
 }
-
 .elements-legend span {
     display: flex;
     align-items: center;
     gap: 4px;
 }
-
 .elements-legend span::before {
     content: '';
     display: inline-block;
@@ -309,26 +284,11 @@ option {
     height: 8px;
     border-radius: 50%;
 }
-
-.elements-legend span.wood::before {
-    background-color: #4CAF50;
-}
-
-.elements-legend span.fire::before {
-    background-color: #F44336;
-}
-
-.elements-legend span.earth::before {
-    background-color: #FFC107;
-}
-
-.elements-legend span.metal::before {
-    background-color: #E0E0E0;
-}
-
-.elements-legend span.water::before {
-    background-color: #2196F3;
-}
+.elements-legend span.wood::before { background-color: #4CAF50; }
+.elements-legend span.fire::before { background-color: #F44336; }
+.elements-legend span.earth::before { background-color: #FFC107; }
+.elements-legend span.metal::before { background-color: #E0E0E0; }
+.elements-legend span.water::before { background-color: #2196F3; }
 
 /* Interpretation & AI Loading */
 .interpretation h3 {
@@ -353,11 +313,8 @@ option {
     animation: spin 1s ease-in-out infinite;
     margin-bottom: 1rem;
 }
-
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
 .interp-content {
@@ -376,7 +333,6 @@ option {
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
 }
-
 .interp-content strong {
     color: #fff;
 }
@@ -384,18 +340,16 @@ option {
 /* Chat Section */
 .chat-section {
     margin-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255,255,255,0.1);
     padding-top: 1.5rem;
 }
-
 .chat-section h3 {
     color: #D4AF37;
     font-size: 1.1rem;
     margin-bottom: 1rem;
 }
-
 .chat-history {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0,0,0,0.2);
     border-radius: 8px;
     height: 350px;
     overflow-y: auto;
@@ -404,13 +358,11 @@ option {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255,255,255,0.05);
 }
-
 .chat-history::-webkit-scrollbar {
     width: 6px;
 }
-
 .chat-history::-webkit-scrollbar-thumb {
     background: rgba(212, 175, 55, 0.5);
     border-radius: 3px;
@@ -423,21 +375,18 @@ option {
     font-size: 0.95rem;
     line-height: 1.6;
 }
-
 .chat-msg.user {
     align-self: flex-end;
     background: #D4AF37;
     color: #111;
     border-bottom-right-radius: 2px;
 }
-
 .chat-msg.ai {
     align-self: flex-start;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255,255,255,0.1);
     color: #e0e0e0;
     border-bottom-left-radius: 2px;
 }
-
 .chat-msg.ai strong {
     color: #D4AF37;
 }
@@ -446,12 +395,10 @@ option {
     display: flex;
     gap: 0.5rem;
 }
-
 .chat-input-area input {
     flex: 1;
     margin-bottom: 0;
 }
-
 #chat-send-btn {
     background: #D4AF37;
     color: #111;
@@ -462,11 +409,9 @@ option {
     cursor: pointer;
     transition: transform 0.2s;
 }
-
 #chat-send-btn:hover {
     transform: translateY(-2px);
 }
-
 .chat-loading {
     align-self: flex-start;
     color: #D4AF37;
@@ -476,15 +421,8 @@ option {
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in {
@@ -497,21 +435,38 @@ option {
         flex-direction: column;
         gap: 1.2rem;
     }
-
+    
     header h1 {
-        font-size: 2rem;
-    }
-
-    .bazi-char {
         font-size: 1.8rem;
-        width: 2.5rem;
+    }
+    
+    .bazi-char {
+        font-size: 1.5rem;
+        width: 2rem;
     }
 
-    .time-selects {
-        flex-wrap: wrap;
+    .bazi-column {
+        padding: 0.5rem 0;
+    }
+    
+    /* 날짜, 시간 선택 드롭다운 겹침 해결 */
+    .date-selects, .time-selects, .time-loc-selects {
+        gap: 0.3rem !important;
     }
 
+    .date-selects select, .time-selects select, .time-loc-selects select {
+        padding: 0.6rem 0.2rem !important;
+        font-size: 0.85rem !important;
+        text-overflow: ellipsis;
+    }
+    
     .glass-card {
-        padding: 1.2rem;
+        padding: 1rem;
+    }
+
+    /* 긴 글자 버튼이나 옵션들이 튀어나가지 않게 */
+    select, input, button {
+        max-width: 100%;
+        overflow: hidden;
     }
 }

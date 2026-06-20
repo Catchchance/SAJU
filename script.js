@@ -14,15 +14,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // 드롭다운 옵션 세팅
     const currentYear = new Date().getFullYear();
     const yearSelect = document.getElementById('birth-year');
-    for(let y = currentYear; y >= currentYear - 100; y--) { yearSelect.add(new Option(y, y)); }
+    for(let y = currentYear; y >= currentYear - 100; y--) { yearSelect.add(new Option(y + '년', y)); }
     const monthSelect = document.getElementById('birth-month');
-    for(let m = 1; m <= 12; m++) { monthSelect.add(new Option(m, m)); }
+    for(let m = 1; m <= 12; m++) { monthSelect.add(new Option(m + '월', m)); }
     const daySelect = document.getElementById('birth-day');
-    for(let d = 1; d <= 31; d++) { daySelect.add(new Option(d, d)); }
+    for(let d = 1; d <= 31; d++) { daySelect.add(new Option(d + '일', d)); }
     const hourSelect = document.getElementById('birth-hour');
-    for(let h = 0; h < 24; h++) { hourSelect.add(new Option(h < 10 ? '0'+h : h, h)); }
+    for(let h = 0; h < 24; h++) { hourSelect.add(new Option((h < 10 ? '0'+h : h) + '시', h)); }
     const minuteSelect = document.getElementById('birth-minute');
-    for(let m = 0; m < 60; m++) { minuteSelect.add(new Option(m < 10 ? '0'+m : m, m)); }
+    for(let m = 0; m < 60; m++) { minuteSelect.add(new Option((m < 10 ? '0'+m : m) + '분', m)); }
+
+    // 시간 모름 선택 시 분 비활성화 로직
+    hourSelect.addEventListener('change', function() {
+        if(this.value === '') {
+            minuteSelect.disabled = true;
+            minuteSelect.value = '0';
+        } else {
+            minuteSelect.disabled = false;
+        }
+    });
+    // 처음 화면이 켜졌을 때도 기본으로 비활성화 (모름이 기본값이므로)
+    if(hourSelect.value === '') minuteSelect.disabled = true;
 
     const form = document.getElementById('saju-form');
     const inputSection = document.getElementById('input-section');
