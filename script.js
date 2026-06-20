@@ -266,8 +266,9 @@ async function sendChatMessage() {
     
     const historyContainer = document.getElementById('chat-history');
     
-    // 사용자 메시지 표시
-    historyContainer.innerHTML += `<div class="chat-msg user">${msg}</div>`;
+    // 사용자 메시지 표시 (XSS 방지를 위해 텍스트 이스케이프)
+    const escapedMsg = msg.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    historyContainer.innerHTML += `<div class="chat-msg user">${escapedMsg}</div>`;
     historyContainer.scrollTop = historyContainer.scrollHeight;
 
     // 로딩 인디케이터
