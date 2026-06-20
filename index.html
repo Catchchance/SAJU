@@ -52,18 +52,18 @@
                 <div class="form-group">
                     <label>생년월일</label>
                     <div class="date-selects">
-                        <select id="birth-year" required></select> <span>년</span>
-                        <select id="birth-month" required></select> <span>월</span>
-                        <select id="birth-day" required></select> <span>일</span>
+                        <select id="birth-year" required style="flex:1;"></select>
+                        <select id="birth-month" required style="flex:1;"></select>
+                        <select id="birth-day" required style="flex:1;"></select>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label>태어난 시간 및 지역</label>
                     <div class="time-loc-selects">
-                        <select id="birth-hour"><option value="">모름</option></select> <span>시</span>
-                        <select id="birth-minute"><option value="0">00</option></select> <span>분</span>
-                        <select id="birth-location">
+                        <select id="birth-hour" style="flex:1;"><option value="">시간 모름</option></select>
+                        <select id="birth-minute" style="flex:1;"><option value="0">00분</option></select>
+                        <select id="birth-location" style="flex:1;">
                             <option value="0">지역 모름</option>
                             <option value="32">서울/경기</option>
                             <option value="23">강원</option>
