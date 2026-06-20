@@ -183,20 +183,23 @@ async function renderSajuResult(name, yP, mP, dP, tP) {
 - 현재 연도: ${new Date().getFullYear()}년
 
 [풀이 가이드라인]
-1. 사주 원국(천간/지지/오행)에 나타난 팩트를 기반으로 객관적이고 명확하게 분석하세요. 감성적이거나 추상적인 위로('따뜻하게', '사랑하는' 등)는 철저히 배제하세요.
-2. 각 카테고리를 서술할 때 '긍정적', '부정적'이라는 일차원적인 단어를 직접 노출하지 마세요. 대신 '타고난 기운(강점)', '주의할 흐름(단점)', '개운법(운을 트이게 하는 현실적 보완책)'과 같이 명리학적으로 전문적인 어휘를 사용하여 내용을 깔끔하게 분리하세요.
-3. 전문 용어는 알기 쉽게 비유를 들어 설명해주고, 총 분량은 최소 1000자 이상으로 상세하게 작성해주세요.
+1. 사주 원국(천간/지지/오행)에 나타난 팩트를 기반으로 객관적이고 전문적으로 분석하세요. 감성적이거나 추상적인 위로는 배제하되, 결코 내담자의 마음을 불필요하게 긁거나 품격 없는(격 없는) 거친 표현을 써서는 안 됩니다. 20년 경력 최고 권위자다운 무게감과 예의를 지키세요.
+2. 추상적인 사주 용어만 나열하지 말고, 현실에서 어떻게 발현되는지 구체적이고 명확한 팩트로 서술하세요.
+   - 강점 서술 예시: '머리가 좋습니다' (X) -> '핵심을 꿰뚫는 분석력이 뛰어나며, 남들이 보지 못하는 흐름을 읽어내는 전략적 사고가 발달했습니다.' (O)
+3. 단점과 주의할 점 역시 예쁘게 포장하지 않되, 전문가다운 정제된 언어로 날카롭게 짚어주세요.
+   - 단점 서술 예시: '성격이 나빠서 대못을 박는다' (X) -> '본인은 솔직하고 효율을 중시하지만, 직설적인 화법이 타인에게는 날카롭게 다가가 의도치 않은 마찰을 빚을 수 있으니 부드러운 표현 방식을 길러야 합니다.' (O)
+4. 단점 지적 후에는 반드시 현실에서 바로 적용할 수 있는 구체적인 보완책(개운법)을 제시하세요.
+5. 전문 용어는 알기 쉽게 비유를 들어 설명해주고, 총 분량은 최소 1000자 이상으로 상세하게 작성해주세요.
 
 위 가이드라인을 바탕으로 아래의 카테고리에 맞춰 사주를 풀이해주세요.
-# 🌟 총평 및 본질적 성향 (타고난 기운과 성향 분석)
-# 💰 재물운 (돈의 흐름, 주의할 재물 손실 패턴 및 개운법)
-# 💼 직장/사업운 (객관적 직업 적성, 사회생활 주의점)
-# ❤️ 애정/대인관계운 (연애 성향, 피해야 할 인연)
-# 🩺 건강운 (오행 불균형에 따른 취약 질환 및 예방법)
-# 🛤️ 향후 5년의 흐름 (현재 ${new Date().getFullYear()}년 기준 구체적 조언)
+# 🌟 총평 및 본질적 성향 (가장 두드러지는 성격의 장단점과 현실적 분석)
+# 💰 재물운 (돈이 새어나가는 구체적 패턴 및 재물 축적 방법)
+# 💼 직장/사업운 (가장 잘 맞는 구체적 직업군, 사회생활에서 겪기 쉬운 문제)
+# ❤️ 애정/대인관계운 (연애 패턴, 피해야 할 사람의 구체적 특징)
+# 🩺 건강운 (오행 불균형으로 인한 취약 질환 및 관리법)
+# 🛤️ 향후 5년의 흐름 (현재 ${new Date().getFullYear()}년 기준 구체적이고 현실적인 조언)
 
-특수문자(##, ### 등)를 남발하지 말고, 각 카테고리 제목에만 # 1개를 사용하여 아주 컴팩트하고 세련되게 작성해주세요.
-또한, 가장 중요하고 강조해야 할 핵심 내용에는 반드시 앞뒤에 언더바 2개(__)를 붙여(예: __핵심 보완책입니다__) 시각적인 밑줄을 그어주세요.`;
+특수문자(##, ### 등)를 남발하지 말고, 각 카테고리 제목에만 # 1개를 사용하여 아주 컴팩트하고 세련되게 작성해주세요.`;
 
     try {
         const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`, {
@@ -218,10 +221,10 @@ async function renderSajuResult(name, yP, mP, dP, tP) {
         ];
 
         const formattedHTML = aiResult
-            .replace(/^# (.*$)/gim, '<h2 style="color:#FFDF00; font-size:1.5rem; margin-top:2rem; margin-bottom:1rem;">$1</h2>')
+            .replace(/^# (.*?)\s*\((.*?)\)\s*$/gim, '<h2 style="color:#FFDF00; font-size:1.5rem; margin-top:2rem; margin-bottom:1rem; border-bottom: 2px solid rgba(212, 175, 55, 0.4); padding-bottom:12px; line-height:1.3;">$1<span style="color:#aaaaaa; font-size:1rem; font-weight:400; display:block; margin-top:6px;">$2</span></h2>')
+            .replace(/^# (.*$)/gim, '<h2 style="color:#FFDF00; font-size:1.5rem; margin-top:2rem; margin-bottom:1rem; border-bottom: 2px solid rgba(212, 175, 55, 0.4); padding-bottom:8px;">$1</h2>')
             .replace(/^## (.*$)/gim, '<h3 style="color:#d4af37; margin-top:1.2rem; margin-bottom:0.5rem; font-size:1.2rem;">$1</h3>')
             .replace(/\*\*(.*?)\*\*/gim, '<strong style="color:#eeeeee;">$1</strong>')
-            .replace(/__(.*?)__/gim, '<u style="text-decoration-color: #D4AF37; text-underline-offset: 4px; text-decoration-thickness: 2px;">$1</u>')
             .replace(/\n/gim, '<br/>');
 
         aiLoading.classList.add('hidden');
