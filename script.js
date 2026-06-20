@@ -221,9 +221,9 @@ async function renderSajuResult(name, yP, mP, dP, tP) {
         ];
 
         const formattedHTML = aiResult
-            .replace(/^# (.*?)\s*\((.*?)\)\s*$/gim, '<h2 style="color:#FFDF00; font-size:1.5rem; margin-top:2rem; margin-bottom:1rem; border-bottom: 2px solid rgba(212, 175, 55, 0.4); padding-bottom:12px; line-height:1.3;">$1<span style="color:#aaaaaa; font-size:1rem; font-weight:400; display:block; margin-top:6px;">$2</span></h2>')
-            .replace(/^# (.*$)/gim, '<h2 style="color:#FFDF00; font-size:1.5rem; margin-top:2rem; margin-bottom:1rem; border-bottom: 2px solid rgba(212, 175, 55, 0.4); padding-bottom:8px;">$1</h2>')
-            .replace(/^## (.*$)/gim, '<h3 style="color:#d4af37; margin-top:1.2rem; margin-bottom:0.5rem; font-size:1.2rem;">$1</h3>')
+            .replace(/^#\s+(.*?)\s*\((.*?)\)\s*$/gim, '<h2 style="color:#FFDF00; font-size:1.5rem; margin-top:2rem; margin-bottom:1rem; border-bottom: 2px solid rgba(212, 175, 55, 0.4); padding-bottom:12px; line-height:1.3;">$1<span style="color:#aaaaaa; font-size:1rem; font-weight:400; display:block; margin-top:6px;">$2</span></h2>')
+            .replace(/^#\s+(.*$)/gim, '<h2 style="color:#FFDF00; font-size:1.5rem; margin-top:2rem; margin-bottom:1rem; border-bottom: 2px solid rgba(212, 175, 55, 0.4); padding-bottom:8px;">$1</h2>')
+            .replace(/^##+\s+(.*$)/gim, '<h3 style="color:#d4af37; margin-top:1.2rem; margin-bottom:0.5rem; font-size:1.2rem;">$1</h3>')
             .replace(/\*\*(.*?)\*\*/gim, '<strong style="color:#eeeeee;">$1</strong>')
             .replace(/\n/gim, '<br/>');
 
